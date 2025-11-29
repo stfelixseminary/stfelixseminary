@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News & Announcements | St. Felix Seminary School</title>
+  <meta name="description" content="Latest news, announcements, and updates from St. Felix Seminary School, Ejeme Aniogor. Stay informed about seminary events and activities.">
+  <meta name="keywords" content="News, Announcements, Seminary Updates, Events, Community">
+  <meta name="author" content="St. Felix Seminary School">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="News & Announcements - St. Felix Seminary School">
+  <meta property="og:description" content="Latest news and updates from St. Felix Seminary School.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://stfelixseminary.github.io/news.html">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    /* News Specific Styles */
+    .news-hero {
+      background: linear-gradient(135deg, #002855 0%, #001a33 100%);
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .news-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("https://images.unsplash.com/photo-1557804506-669714d2e9d8?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      opacity: 0.15;
+    }
+    .news-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .news-hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+    .news-hero p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .news-section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .news-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 40px;
+    }
+    .news-card:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    .news-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+    .news-content {
+      padding: 30px;
+    }
+    .news-tag {
+      display: inline-block;
+      background: #ffcc00;
+      color: #002855;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .news-card h3 {
+      color: #002855;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .date {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+    .date i {
+      color: #ffcc00;
+    }
+    .news-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .news-meta .date {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #002855;
+      font-size: 0.95em;
+      font-weight: 600;
+    }
+    .author i {
+      color: #ffcc00;
+      font-size: 1.1em;
+    }
+    .news-excerpt {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .news-full {
+      display: none;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .news-full.expanded {
+      display: block;
+      max-height: 3000px;
+    }
+    .event-details {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .event-details p {
+      color: #333;
+      margin: 8px 0;
+    }
+    .event-details strong {
+      color: #002855;
+    }
+    .event-details ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+    .event-details li {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .read-more-btn {
+      background: #002855;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.95em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+    .read-more-btn:hover {
+      background: #ffcc00;
+      color: #002855;
+    }
+
+    /* Comments Section */
+    .comments-section {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #e2e8f0;
+    }
+    .comments-title {
+      font-size: 1.3em;
+      color: #002855;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    .comment-form {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 0.95em;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #ffcc00;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .submit-btn {
+      background: #002855;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.95em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      background: #ffcc00;
+      color: #002855;
+    }
+    .comment-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid #ffcc00;
+    }
+    .comment-name {
+      color: #002855;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .comment-date {
+      color: #999;
+      font-size: 0.85em;
+      margin-bottom: 10px;
+    }
+    .comment-text {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Event Sections Styling */
+    .event-section {
+      margin-bottom: 35px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .event-section:last-child {
+      border-bottom: none;
+    }
+    .event-section h5 {
+      color: #002855;
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .event-section h6 {
+      color: #002855;
+      font-size: 1.15em;
+      margin: 20px 0 12px 0;
+      font-weight: 600;
+    }
+    .event-section p {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    .event-section ul {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+    .event-section li {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .event-highlight {
+      background: linear-gradient(135deg, #f8f9fa, #f0f4ff);
+      padding: 18px 20px;
+      border-radius: 10px;
+      border-left: 4px solid #ffcc00;
+      margin: 15px 0;
+    }
+    .event-highlight h6 {
+      margin-top: 0;
+      color: #002855;
+    }
+
+    /* Results Board */
+    .results-board {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 30px 0;
+    }
+    .result-item {
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid #e0e0e0;
+    }
+    .result-item.first-place {
+      background: linear-gradient(135deg, #fff9e6, #fff3cc);
+      border: 2px solid #ffcc00;
+      transform: scale(1.02);
+    }
+    .result-item.second-place {
+      background: linear-gradient(135deg, #f5f5f5, #efefef);
+      border: 2px solid #c0c0c0;
+    }
+    .result-item.third-place {
+      background: linear-gradient(135deg, #ffe8cc, #ffd9b3);
+      border: 2px solid #d4a574;
+    }
+    .result-item.other-place {
+      background: #f9f9f9;
+      border: 2px solid #d0d0d0;
+    }
+    .result-item .medal {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .result-item .rank {
+      color: #666;
+      font-size: 0.9em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .result-item .house {
+      color: #002855;
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .result-item p {
+      margin: 10px 0 0 0;
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    /* Special Text Styles */
+    .trophy-text {
+      margin-top: 30px;
+      text-align: center;
+      font-style: italic;
+      color: #002855;
+      font-weight: 600;
+    }
+    .closing-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #002855;
+      font-weight: 600;
+    }
+    .closing-text em {
+      font-style: italic;
+    }
+
+    /* Comments Title Styling */
+    .comments-title-header {
+      color: #002855;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .news-hero h1 {
+        font-size: 2em;
+      }
+      .news-card img {
+        height: 200px;
+      }
+      .news-card h3 {
+        font-size: 1.4em;
+      }
+      .result-item.first-place {
+        transform: scale(1);
+      }
+      .event-section h5 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <img src="images/St Felix Logo.png" alt="St. Felix Seminary School Logo" class="school-logo">
+        <div class="brand-text">
+          <div class="logo">St. Felix Seminary School</div>
+          <span class="subtitle">Ejeme Aniogor</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="nav" aria-hidden="true">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#history">History</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="#" class="active">News</a></li>
+          <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+          <li><a href="seminary-projects.html">Seminary Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- News Hero -->
+  <section class="news-hero">
+    <div class="news-hero-content">
+      <h1 class="fade-in">Latest News & Announcements</h1>
+      <p class="fade-in delay-1">Stay updated with happenings at St. Felix Seminary</p>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section class="news-section fade-up">
+    <div class="news-card">
+      <img src="images/sports.jpg" alt="Inter-House Sports Competition" onerror="this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80'">
+      <div class="news-content">
+        <div class="news-tag">Featured Event</div>
+        <h3>ST. FELIX SEMINARY INTER-HOUSE SPORTS: A Day of Speed, Sweat & Unforgettable Victories</h3>
+        <div class="news-meta">
+          <span class="date"><i class="fas fa-calendar-alt"></i> November 8, 2025</span>
+          <span class="author"><i class="fas fa-pen-fancy"></i> By Ograka Emmanuel (SS3)</span>
+        </div>
+        
+        <p class="news-excerpt">
+          The gates of St. Felix Seminary Sports Complex burst open with excitement as seminarians, staff, and guests flooded the field for the much-anticipated Annual Inter-House Sports Competition—a day that left no heart untouched and no voice unstrained. From the crack of the first whistle, it was clear: this wasn't just another sports day… it was a battle of pride, passion, and pure determination.
+        </p>
+
+        <div class="news-full" id="full-content-1">
+          <div class="event-section">
+            <h5>A GRAND OPENING THAT SET THE TONE</h5>
+            <p>The event began with an energetic parade. Each house marched in precision, uniforms crisp, flags raised high, and chants echoing like thunder across the field. Spectators cheered the loudest as the houses saluted the judges' stand:</p>
+            <ul>
+              <li><strong>Bishop Elue's House</strong> marched with military precision</li>
+              <li><strong>Bishop Gbuji's House</strong> matched style with swagger</li>
+              <li><strong>Sir Ikemefune's House</strong> impressed with their synchronized movements</li>
+              <li><strong>Bishop Otteh's House</strong> lit up the field with their colorful display and rhythm</li>
+              <li><strong>Sir Oduma's House</strong> commanded respect with flawless execution</li>
+            </ul>
+            <p>The Opening Prayer, invoking St. Felix of Dunwich, reminded everyone that the saint who once educated and guided young souls still inspires seminarians to strive for excellence—both in the classroom and on the track.</p>
+          </div>
+
+          <div class="event-section">
+            <h5>THE EVENTS THAT SHOOK THE FIELD</h5>
+            
+            <div class="event-highlight">
+              <h6>🏃 100m Dash – The Stadium Erupts</h6>
+              <p>The 100m final was nothing short of electrifying. The moment the gun went off, five sprinters exploded forward. For a moment, the entire stadium held its breath. Aquinas House's runner, known for his quiet demeanor, shocked everyone. With a final burst of speed, he overtook Augustine House's early leader in the last five meters. The cheers that followed nearly lifted the canopy from the judges' tent.</p>
+            </div>
+
+            <div class="event-highlight">
+              <h6>🏃 200m – A Battle of Endurance</h6>
+              <p>Augustine House returned with vengeance, fielding a confident runner who dominated the curve and maintained an unshakable lead to the finish. That single victory restored morale and tightened the points table dramatically.</p>
+            </div>
+
+            <div class="event-highlight">
+              <h6>🏃 800m & 1500m – The Test of Champions</h6>
+              <p>Long-distance events tested not just speed, but willpower. Benedict House's lanky athlete found himself trailing behind the pack—but on the final lap, he surged like a man possessed. Gasps filled the air as he overtook two competitors in the last 60 meters, collapsing past the finish line to roaring applause.</p>
+            </div>
+
+            <div class="event-highlight">
+              <h6>🏅 Relay Races – Where Legends Are Made</h6>
+              <p>The 4×100m relay became the event of the afternoon. Baton handovers, near slips, wild sprints, and the crowd screaming at the top of their lungs—it had everything. In the final exchange, Aquinas and Cecilian Houses were neck-and-neck. But Aquinas House's anchor sprinted the race of his life, crossing the line first and sending the blue-and-white supporters into loud celebration.</p>
+            </div>
+
+            <div class="event-highlight">
+              <h6>💪 Field Events – Strength Meets Strategy</h6>
+              <ul>
+                <li><strong>Javelin:</strong> Augustine House stunned the spectators with a throw so clean it sliced the air like a spear</li>
+                <li><strong>Long Jump:</strong> Cecilian House produced a soaring jump that wowed even the judges</li>
+                <li><strong>Shot Put & Discus:</strong> Aquinas House dominated here, building the foundation for their overall victory</li>
+              </ul>
+              <p><em>Anywhere you stood on the field, something thrilling was happening.</em></p>
+            </div>
+          </div>
+
+          <div class="event-section">
+            <h5>THE FINAL MOMENT—ANNOUNCING THE CHAMPIONS</h5>
+            <p>As dusk painted the sky gold, seminarians gathered anxiously around the podium. The air vibrated with excitement as the judges presented the final results:</p>
+            
+            <div class="results-board">
+              <div class="result-item first-place">
+                <div class="medal">🥇</div>
+                <div class="rank">1st Place</div>
+                <div class="house">Sir Oduma House</div>
+                <p>They proved unstoppable—relay kings, champions of field events, and consistent top runners.</p>
+              </div>
+              
+              <div class="result-item second-place">
+                <div class="medal">🥈</div>
+                <div class="rank">2nd Place</div>
+                <div class="house">Bishop Otteh's House</div>
+                <p>Courageous, disciplined, and relentless. Their long-distance runners and javelin star kept them close to the top.</p>
+              </div>
+              
+              <div class="result-item third-place">
+                <div class="medal">🥉</div>
+                <div class="rank">3rd Place</div>
+                <div class="house">Sir Ikemefuna House</div>
+                <p>They may not have won the trophy, but they won hearts with their comeback moments and the loudest supporters all day.</p>
+              </div>
+              
+              <div class="result-item other-place">
+                <div class="rank">4th Place</div>
+                <div class="house">Bishop Gbuji's House</div>
+              </div>
+              
+              <div class="result-item other-place">
+                <div class="rank">5th Place</div>
+                <div class="house">Bishop Elue's House</div>
+                <p>The house of spirit. Their chants, colors, and energy gave the event life from start to finish.</p>
+              </div>
+            </div>
+
+            <p class="trophy-text">As the Trophy was lifted, the crowd erupted, cameras flashed, and athletes embraced both rivals and teammates. The atmosphere felt more like a festival than a competition.</p>
+          </div>
+
+          <div class="event-section">
+            <h5>A DAY TO REMEMBER</h5>
+            <p>The 2025 St. Felix Seminary Inter-House Sports was more than a contest—it was a celebration of brotherhood, sportsmanship, and the resilient spirit of young men formed under the watchful inspiration of St. Felix of Dunwich.</p>
+            
+            <p class="closing-text">Even as the field emptied and the sun sank behind the seminary's chapel towers, one thing was clear: <em>This year's sports competition will be talked about for a long, long time.</em></p>
+          </div>
+        </div>
+
+        <button class="read-more-btn" onclick="toggleNewsContent(1)">Read Full Story</button>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h4 class="comments-title"><i class="fas fa-comments"></i> Comments (2)</h4>
+          
+          <div class="comment-item">
+            <div class="comment-name">Chukwuma Okonkwo</div>
+            <div class="comment-date">November 8, 2025 at 7:30 PM</div>
+            <div class="comment-text">What an incredible day! The energy was amazing. Congratulations to Sir Oduma House on an outstanding victory, and to all the athletes for their exceptional performances!</div>
+          </div>
+
+          <div class="comment-item">
+            <div class="comment-name">Fr. Michael Ezeibe</div>
+            <div class="comment-date">November 8, 2025 at 5:15 PM</div>
+            <div class="comment-text">This truly embodies the spirit of St. Felix Seminary. Our seminarians displayed not just athletic prowess, but genuine brotherhood and sportsmanship. Proud of all of them!</div>
+          </div>
+
+          <div class="comment-form">
+            <h4 class="comments-title-header">Leave a Comment</h4>
+            <form onsubmit="submitComment(event, 1)">
+              <div class="form-group">
+                <label for="name-1">Name</label>
+                <input type="text" id="name-1" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="email-1">Email</label>
+                <input type="email" id="email-1" placeholder="Your Email" required>
+              </div>
+              <div class="form-group">
+                <label for="comment-1">Comment</label>
+                <textarea id="comment-1" placeholder="Share your thoughts..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Post Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 St. Felix Seminary School, Ejeme Aniogor. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function toggleNewsContent(newsId) {
+      const fullContent = document.getElementById('full-content-' + newsId);
+      const button = event.target;
+      
+      if (fullContent.classList.contains('expanded')) {
+        fullContent.classList.remove('expanded');
+        button.textContent = 'Read More';
+      } else {
+        fullContent.classList.add('expanded');
+        button.textContent = 'Read Less';
+        
+        // Smooth scroll to show the expanded content
+        setTimeout(function() {
+          button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+
+    // Submit comment functionality with localStorage persistence
+    function submitComment(e, newsId) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name-' + newsId).value;
+      const email = document.getElementById('email-' + newsId).value;
+      const comment = document.getElementById('comment-' + newsId).value;
+      
+      // Create comment object
+      const commentObj = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        comment: comment,
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+      };
+      
+      // Get existing comments from localStorage
+      let comments = JSON.parse(localStorage.getItem('news_comments_' + newsId)) || [];
+      
+      // Add new comment
+      comments.push(commentObj);
+      
+      // Save to localStorage
+      localStorage.setItem('news_comments_' + newsId, JSON.stringify(comments));
+      
+      // Display the new comment
+      displayComment(commentObj, newsId);
+      
+      // Update comment count
+      updateCommentCount(newsId);
+      
+      // Clear form
+      document.getElementById('name-' + newsId).value = '';
+      document.getElementById('email-' + newsId).value = '';
+      document.getElementById('comment-' + newsId).value = '';
+      
+      // Show success message
+      alert('Comment posted successfully!');
+    }
+
+    // Display a single comment
+    function displayComment(commentObj, newsId) {
+      const newComment = document.createElement('div');
+      newComment.className = 'comment-item';
+      newComment.innerHTML = `
+        <div class="comment-name">${escapeHtml(commentObj.name)}</div>
+        <div class="comment-date">${commentObj.date}</div>
+        <div class="comment-text">${escapeHtml(commentObj.comment)}</div>
+      `;
+      
+      // Insert before the form
+      const commentForm = document.querySelector('.comment-form');
+      commentForm.parentNode.insertBefore(newComment, commentForm);
+    }
+
+    // Update comment count
+    function updateCommentCount(newsId) {
+      const comments = JSON.parse(localStorage.getItem('news_comments_' + newsId)) || [];
+      const commentTitle = document.querySelector('.comments-title');
+      const totalComments = 2 + comments.length; // 2 sample comments + new ones
+      commentTitle.textContent = '💬 Comments (' + totalComments + ')';
+    }
+
+    // Load saved comments on page load
+    function loadSavedComments(newsId) {
+      const comments = JSON.parse(localStorage.getItem('news_comments_' + newsId)) || [];
+      comments.forEach(commentObj => {
+        displayComment(commentObj, newsId);
+      });
+      updateCommentCount(newsId);
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', function() {
+          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', !isExpanded);
+          nav.setAttribute('aria-hidden', isExpanded);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!nav.contains(event.target) && !navToggle.contains(event.target)) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          }
+        });
+        
+        // Close menu when clicking a link
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          });
+        });
+      }
+      
+      // Load saved comments for each news article
+      loadSavedComments(1);
+    });
+
+    // Scroll animation
+    const elements = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.2 }
+    );
+    elements.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery | St. Felix Seminary School</title>
+  <meta name="description" content="Photo gallery showcasing events, celebrations, and moments from St. Felix Seminary School, Ejeme Aniogor. View our community activities and seminary life.">
+  <meta name="keywords" content="Gallery, Seminary Photos, Events, Celebrations, Catholic Community">
+  <meta name="author" content="St. Felix Seminary School">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Photo Gallery - St. Felix Seminary School">
+  <meta property="og:description" content="Explore moments from St. Felix Seminary School through our photo gallery.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://stfelixseminary.github.io/gallery.html">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    /* Gallery Specific Styles */
+    .gallery-hero {
+      background: linear-gradient(135deg, #002855 0%, #001a33 100%);
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      opacity: 0.15;
+    }
+    .gallery-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .gallery-hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+    .gallery-hero p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .event-section {
+      padding: 80px 20px;
+      background: #f8f9fa;
+    }
+    .event-section:nth-child(even) {
+      background: white;
+    }
+    .event-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .event-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .event-title {
+      font-size: 2.5em;
+      color: #002855;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .event-title i {
+      color: #ffcc00;
+      font-size: 1.2em;
+    }
+    .event-description {
+      font-size: 1.1em;
+      color: #555;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: justify;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 40, 85, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-overlay i {
+      font-size: 2.5em;
+      color: #ffcc00;
+    }
+
+    /* Modal Styles */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      cursor: pointer;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .modal-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5em;
+      color: #ffcc00;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .modal-close:hover {
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-hero h1 {
+        font-size: 2em;
+      }
+      .gallery-hero p {
+        font-size: 1.1em;
+      }
+      .event-title {
+        font-size: 2em;
+      }
+      .event-section {
+        padding: 50px 20px;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <img src="images/St Felix Logo.png" alt="St. Felix Seminary School Logo" class="school-logo">
+        <div class="brand-text">
+          <div class="logo">St. Felix Seminary School</div>
+          <span class="subtitle">Ejeme Aniogor</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="nav" aria-hidden="true">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#history">History</a></li>
+          <li><a href="#" class="active">Gallery</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+          <li><a href="seminary-projects.html">Seminary Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Gallery Hero -->
+  <section class="gallery-hero">
+    <div class="gallery-hero-content">
+      <h1 class="fade-in">Photo Gallery</h1>
+      <p class="fade-in delay-1">Capturing Moments of Faith, Community & Growth</p>
+    </div>
+  </section>
+
+  <!-- Bishop Elue Blesses New Hostel Event -->
+  <section class="event-section fade-up">
+    <div class="event-container">
+      <div class="event-header">
+        <h2 class="event-title">
+          <i class="fas fa-home"></i>
+          Bishop Elue Blesses New Hostel
+        </h2>
+        <p class="event-description">
+          In a momentous occasion that marked a significant milestone for St. Felix Seminary, 
+          His Excellency Bishop Michael Elue graced the seminary with his presence to officially 
+          bless our newly constructed student hostel. This event celebrated not only the completion 
+          of an essential facility but also the seminary's commitment to providing comfortable and 
+          conducive living spaces for our seminarians. The blessing served as a spiritual affirmation 
+          of the seminary's mission and the tireless efforts of all stakeholders who made this 
+          construction possible. The new hostel represents hope, progress, and the dedication of 
+          our seminary community to fostering an environment where seminarians can thrive both 
+          spiritually and academically.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 1.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 2.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 3.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 4.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 5.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Bisho Elue Blesses New hostel 6.jpg" alt="Bishop blessing ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cultural Day Event -->
+  <section class="event-section fade-up">
+    <div class="event-container">
+      <div class="event-header">
+        <h2 class="event-title">
+          <i class="fas fa-theater-masks"></i>
+          Cultural Day Celebration
+        </h2>
+        <p class="event-description">
+          Our annual Cultural Day is a vibrant celebration of the rich diversity and heritage of 
+          our seminarian community. This spectacular event showcases the various cultures, traditions, 
+          and talents of students from different ethnic backgrounds and regions. Through traditional 
+          dances, music, culinary delights, and artistic performances, seminarians celebrate their 
+          shared faith while honoring their unique cultural identities. Cultural Day serves as a 
+          platform for fostering unity in diversity, promoting cross-cultural understanding, and 
+          creating lasting memories. It reinforces our seminary's commitment to building a community 
+          where every voice is heard, every culture is respected, and every seminarian feels valued 
+          and celebrated for who they are.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 1.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 2.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 3.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 4.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 5.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Cultural Day 6.jpg" alt="Cultural performances">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inter-House Sports Event -->
+  <section class="event-section fade-up">
+    <div class="event-container">
+      <div class="event-header">
+        <h2 class="event-title">
+          <i class="fas fa-trophy"></i>
+          Inter-House Sports Championship
+        </h2>
+        <p class="event-description">
+          The Inter-House Sports Championship is an exciting annual event where seminarians compete 
+          in various athletic activities while representing their respective houses. This friendly 
+          competition promotes physical wellness, team spirit, and healthy rivalry among the seminary 
+          community. Beyond the pursuit of medals and trophies, the sports championship embodies 
+          the values of discipline, perseverance, and excellence that are central to seminary life. 
+          Athletes push their limits, supporting teammates and demonstrating the importance of 
+          building a strong body as part of holistic spiritual formation. The event brings the 
+          entire seminary community together in a celebration of athleticism, camaraderie, and the 
+          joy of friendly competition, creating bonds that extend far beyond the playing field.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Inter-House Sport 1.jpg" alt="Sports competition">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Inter-House Sport 2.jpg" alt="Sports competition">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Inter-House Sport 3.jpg" alt="Sports competition">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Inter-House Sport 4.jpg" alt="Sports competition">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Students Investiture Event -->
+  <section class="event-section fade-up">
+    <div class="event-container">
+      <div class="event-header">
+        <h2 class="event-title">
+          <i class="fas fa-crown"></i>
+          Students Investiture 2025
+        </h2>
+        <p class="event-description">
+          The Students Investiture Ceremony 2025 marked a significant milestone in the academic 
+          journey of our seminarians, as new student leaders were ceremonially invested into their 
+          positions of responsibility. This solemn and dignified event celebrates the leadership 
+          qualities, integrity, and dedication of those chosen to guide their peers through the 
+          academic year. The investiture ceremony symbolizes the transfer of trust and responsibility, 
+          as newly appointed leaders commit to serving their community with honor and distinction. 
+          Wearing their regalia with pride, these students pledge to uphold the seminary's values, 
+          support their fellow seminarians, and contribute meaningfully to the vibrant life of our 
+          institution. The ceremony reinforces our seminary's tradition of developing not just 
+          priests, but outstanding leaders and role models.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Students Investiture 2025 1.jpg" alt="Investiture ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Students Investiture 2025 2.jpg" alt="Investiture ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Students Investiture 2025 3.jpg" alt="Investiture ceremony">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Old Boys Celebration Event -->
+  <section class="event-section fade-up">
+    <div class="event-container">
+      <div class="event-header">
+        <h2 class="event-title">
+          <i class="fas fa-users"></i>
+          Old Boys Celebration (Annual Reunion)
+        </h2>
+        <p class="event-description">
+          The Annual Old Boys Celebration is a cherished tradition at St. Felix Seminary that brings 
+          together alumni and former seminarians to reconnect, reminisce, and celebrate their shared 
+          seminary experience. This homecoming event strengthens the bonds of brotherhood that extend 
+          far beyond seminary walls, creating opportunities for alumni to mentor current students and 
+          share their post-seminary journeys. The celebration is a testament to the lasting impact of 
+          St. Felix Seminary on the lives and ministries of its alumni, many of whom have gone on to 
+          serve the Church and their communities with distinction. Through fellowship, sharing of 
+          experiences, and spiritual renewal, the Old Boys Celebration reinforces the seminary's 
+          proud legacy and the enduring spirit of community that defines St. Felix. It serves as a 
+          bridge between past and present, inspiring current seminarians with the examples of their 
+          predecessors and strengthening the extended seminary family.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Old Boys Celebration 1.jpg" alt="Old boys reunion">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Old Boys Celebration 2.jpg" alt="Old boys reunion">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Old Boys Celebration 3.jpg" alt="Old boys reunion">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="gallery-item" onclick="openModal(this.querySelector('img').src)">
+          <img src="images/Gallary Pictures/Old Boys Celebration 4.jpg" alt="Old boys reunion">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 St. Felix Seminary School, Ejeme Aniogor. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="image-modal" style="display: none;" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Gallery image">
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function openModal(imageSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = imageSrc;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (event && event.target.id !== 'imageModal') return;
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeModal();
+    });
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', function() {
+          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', !isExpanded);
+          nav.setAttribute('aria-hidden', isExpanded);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!nav.contains(event.target) && !navToggle.contains(event.target)) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          }
+        });
+        
+        // Close menu when clicking a link
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          });
+        });
+      }
+    });
+
+    // Scroll animation
+    const elements = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.2 }
+    );
+    elements.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

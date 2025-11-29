@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seminary Projects | St. Felix Seminary School</title>
+  <meta name="description" content="Support ongoing and planned projects at St. Felix Seminary School. View our completed projects and contribute to building our seminary community.">
+  <meta name="keywords" content="Seminary Projects, Donations, Construction, Community Development, Support">
+  <meta name="author" content="St. Felix Seminary School">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Seminary Projects - St. Felix Seminary School">
+  <meta property="og:description" content="Support our seminary projects and help build our community.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://stfelixseminary.github.io/seminary-projects.html">
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    /* Projects Specific Styles */
+    .projects-hero {
+      background: linear-gradient(135deg, #002855 0%, #001a33 100%);
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      opacity: 0.15;
+    }
+    .projects-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .projects-hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+    .projects-hero p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .projects-section {
+      padding: 80px 20px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 30px auto 0;
+    }
+    .project-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .project-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+    .project-status {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      z-index: 2;
+    }
+    .status-ongoing {
+      background: #ffcc00;
+      color: #002855;
+    }
+    .status-completed {
+      background: #25D366;
+      color: white;
+    }
+    .status-planned {
+      background: #ff6b6b;
+      color: white;
+    }
+    .project-content {
+      padding: 30px;
+    }
+    .project-title {
+      color: #002855;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .project-description {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .project-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 0.9em;
+    }
+    .info-item i {
+      color: #ffcc00;
+    }
+    .progress-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffcc00, #ffd633);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+    .progress-fill.p1 { width: 1%; }
+    .progress-fill.p2 { width: 2%; }
+    .progress-fill.p40 { width: 40%; }
+    .progress-fill.p55 { width: 55%; }
+    .progress-fill.p65 { width: 65%; }
+    .progress-text {
+      text-align: center;
+      color: #002855;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+    .project-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-donate {
+      background: linear-gradient(135deg, #ffcc00, #ffd633);
+      color: #002855;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-donate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+    }
+    
+    /* Donation Section */
+    .donation-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #002855, #001a33);
+      color: white;
+      text-align: center;
+    }
+    .donation-section h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .donation-section h2::after {
+      background: #ffcc00;
+    }
+    .donation-section p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .donation-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .donation-method {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s ease;
+    }
+    .donation-method:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .donation-method i {
+      font-size: 3em;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+    .donation-method h3 {
+      color: #ffcc00;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    .donation-method p {
+      font-size: 1.1em;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .donation-info {
+      background: rgba(255, 204, 0, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      color: #002855;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #ffcc00;
+      margin: 15px auto 0;
+    }
+    
+    @media (max-width: 768px) {
+      .projects-hero h1 {
+        font-size: 2em;
+      }
+      .projects-hero p {
+        font-size: 1.1em;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .donation-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <img src="images/St Felix Logo.png" alt="St. Felix Seminary School Logo" class="school-logo">
+        <div class="brand-text">
+          <div class="logo">St. Felix Seminary School</div>
+          <span class="subtitle">Ejeme Aniogor</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="nav" aria-hidden="true">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#history">History</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="hall-of-fame.html">Hall of Fame</a></li>
+          <li><a href="#" class="active">Seminary Projects</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="projects-hero">
+    <div class="projects-hero-content">
+      <h1 class="fade-in">Seminary Projects</h1>
+      <p class="fade-in delay-1">Building Our Future Together</p>
+      <p class="fade-in delay-1">
+        Discover how we're growing and expanding, and learn how you can support our mission.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ongoing Projects -->
+  <section class="projects-section fade-up">
+    <h2 class="section-title">Ongoing Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Computer Lab">
+          <div class="project-status status-ongoing">ONGOING</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Computer Laboratory</h3>
+          <p class="project-description">
+            State-of-the-art computer lab with 40 workstations, high-speed internet, 
+            and modern software for comprehensive digital literacy training. Currently operational 
+            and undergoing expansion for enhanced capacity.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span>Operational since: November 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Academic Block</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p2"></div>
+          </div>
+          <div class="progress-text">2% Complete</div>
+          <div class="project-actions">
+            <a href="#donation" class="btn-donate">Support This Project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/Project Photos/Landscaping.png" alt="Landscaping">
+          <div class="project-status status-ongoing">ONGOING</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Landscaping</h3>
+          <p class="project-description">
+            Comprehensive landscaping and beautification project to enhance the seminary grounds with 
+            modern gardens, pathways, and green spaces for a serene environment.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span>Started: 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Seminary Grounds</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p1"></div>
+          </div>
+          <div class="progress-text">1% Complete</div>
+          <div class="project-actions">
+            <a href="#donation" class="btn-donate">Support This Project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/Project Photos/Proposed Chapel.png" alt="Proposed Chapel">
+          <div class="project-status status-ongoing">ONGOING</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Proposed Chapel</h3>
+          <p class="project-description">
+            A new state-of-the-art chapel facility designed to accommodate the growing seminary community 
+            with modern architecture and enhanced spiritual spaces.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span>Started: 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Main Campus</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p1"></div>
+          </div>
+          <div class="progress-text">1% Complete</div>
+          <div class="project-actions">
+            <a href="#donation" class="btn-donate">Support This Project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/Project Photos/Proposed School Hall.PNG" alt="Proposed School Hall">
+          <div class="project-status status-ongoing">ONGOING</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Proposed School Hall</h3>
+          <p class="project-description">
+            A multipurpose assembly and conference hall designed to host seminars, gatherings, and 
+            community events with state-of-the-art facilities.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span>Started: 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Central Campus</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p1"></div>
+          </div>
+          <div class="progress-text">1% Complete</div>
+          <div class="project-actions">
+            <a href="#donation" class="btn-donate">Support This Project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/Project Photos/Proposed School Library.png" alt="Proposed School Library">
+          <div class="project-status status-ongoing">ONGOING</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Proposed School Library</h3>
+          <p class="project-description">
+            A modern library facility designed to expand our existing resources, providing enhanced 
+            study spaces and digital research capabilities for seminarians.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span>Started: 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Academic Block</span>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p1"></div>
+          </div>
+          <div class="progress-text">1% Complete</div>
+          <div class="project-actions">
+            <a href="#donation" class="btn-donate">Support This Project</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Recently Completed Projects -->
+  <section class="projects-section fade-up">
+    <h2 class="section-title">Recently Completed Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/Completed hostel.jpg" alt="Completed Student Hostel">
+          <div class="project-status status-completed">COMPLETED</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Student Hostel Expansion</h3>
+          <p class="project-description">
+            New 1 story student accommodation facility with modern amenities, increasing 
+            our capacity to house more seminarians comfortably. Completed in 2025.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Completed: October 2025</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>West Campus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/gate house.jpg" alt="Gate House">
+          <div class="project-status status-completed">COMPLETED</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Gate House</h3>
+          <p class="project-description">
+            A beautiful and secure gate house facility that serves as the main entrance 
+            to the seminary, providing security and welcoming visitors to our campus.
+          </p>
+          <div class="project-info">
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Completed: 2024</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Main Entrance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Section -->
+  <section id="donation" class="donation-section">
+    <h2>Support Our Mission</h2>
+    <p>
+      Your generous contributions help us continue building and improving our seminary. 
+      Every donation makes a difference in the lives of our seminarians and the future of the Church.
+    </p>
+    <div class="donation-methods">
+      <div class="donation-method">
+        <i class="fas fa-university"></i>
+        <h3>Bank Transfer</h3>
+        <p>Make a direct bank transfer to our seminary account. Contact us for banking details.</p>
+        <div class="donation-info">
+          Contact: 08080491415
+        </div>
+      </div>
+      <div class="donation-method">
+        <i class="fab fa-whatsapp"></i>
+        <h3>WhatsApp</h3>
+        <p>Reach out to us on WhatsApp to discuss how you can contribute to specific projects.</p>
+        <div class="donation-info">
+          <a href="https://api.whatsapp.com/send?phone=2348080491415" target="_blank" rel="noopener noreferrer" class="contact-link contact-whatsapp">Click to Chat</a>
+        </div>
+      </div>
+      <div class="donation-method">
+        <i class="fas fa-handshake"></i>
+        <h3>In-Person</h3>
+        <p>Visit us at the seminary to make a donation in person and tour our facilities.</p>
+        <div class="donation-info">
+          St. Felix Seminary, Ejeme-Aniogor
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 St. Felix Seminary School, Ejeme Aniogor. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav');
+      
+      if (navToggle && nav) {
+        navToggle.addEventListener('click', function() {
+          const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', !isExpanded);
+          nav.setAttribute('aria-hidden', isExpanded);
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!nav.contains(event.target) && !navToggle.contains(event.target)) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          }
+        });
+        
+        // Close menu when clicking a link
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navToggle.setAttribute('aria-expanded', 'false');
+            nav.setAttribute('aria-hidden', 'true');
+          });
+        });
+      }
+    });
+
+    // Scroll animation
+    const elements = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.2 }
+    );
+    elements.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
+
