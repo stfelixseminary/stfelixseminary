@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /images/
 
-Sitemap: https://stfelixseminary.github.io/sitemap.xml
+Sitemap: https://stfelixseminary.com/sitemap.xml
