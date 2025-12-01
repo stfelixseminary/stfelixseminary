@@ -33,7 +33,7 @@
   }
   </script>
   
-</head>
+<style>
     /* Projects Specific Styles */
     .projects-hero {
       background: linear-gradient(135deg, #002855 0%, #001a33 100%);
@@ -73,6 +73,8 @@
     
     .projects-section {
       padding: 80px 20px;
+      opacity: 1;
+      transform: translateY(0);
     }
     .projects-grid {
       display: grid;
@@ -239,6 +241,7 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 40px 30px;
       border-radius: 20px;
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.4s ease;
