@@ -17,8 +17,51 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "News & Announcements - St. Felix Seminary School",
+    "url": "https://stfelixseminary.github.io/news.html",
+    "description": "Latest news, announcements, and updates from St. Felix Seminary School",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "St. Felix Seminary School",
+      "url": "https://stfelixseminary.github.io/"
+    }
+  }
+  </script>
+  <!-- Event Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Nine Lessons and Carols - Christmas Celebration",
+    "description": "A sacred celebration of the Christmas season through the timeless tradition of Nine Lessons and Carols, combining Scripture readings with beloved Christmas hymns and music.",
+    "startDate": "2025-12-06",
+    "endDate": "2025-12-06",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "St. Felix Seminary School Chapel",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ejeme Aniogor",
+        "addressCountry": "NG"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "St. Felix Seminary School",
+      "url": "https://stfelixseminary.github.io/"
+    },
+    "image": "https://stfelixseminary.github.io/images/St Felix Logo.png",
+    "url": "https://stfelixseminary.github.io/news.html"
+  }
+  </script>
   <style>
-    /* News Specific Styles */
     .news-hero {
       background: linear-gradient(135deg, #002855 0%, #001a33 100%);
       height: 40vh;
@@ -59,6 +102,8 @@
       padding: 80px 20px;
       max-width: 900px;
       margin: 0 auto;
+      opacity: 1;
+      transform: translateY(0);
     }
     .news-card {
       background: white;
@@ -398,6 +443,161 @@
       font-style: italic;
     }
 
+    /* Festive Event Styles */
+    .festive-event {
+      border: 3px solid #c41e3a;
+      background: linear-gradient(135deg, #f8f8f8 0%, #fff5f5 100%);
+      position: relative;
+      overflow: visible;
+    }
+    .festive-event img {
+      display: none;
+    }
+    .festive-event::before {
+      content: '❄️ ❄️ ❄️ ❄️ ❄️';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      font-size: 1.5em;
+      letter-spacing: 20px;
+      opacity: 0.3;
+      animation: drift 6s infinite;
+    }
+    .festive-event::after {
+      content: '❄️ ❄️ ❄️ ❄️ ❄️';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      font-size: 1.5em;
+      letter-spacing: 20px;
+      opacity: 0.3;
+      animation: drift 8s infinite;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+    }
+
+    .festive-banner {
+      background: linear-gradient(135deg, #c41e3a 0%, #165b33 100%);
+      position: relative;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+    .christmas-lights {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: repeating-linear-gradient(90deg, #ffcc00 0px, #ffcc00 10px, #ff6b6b 10px, #ff6b6b 20px, #00cc66 20px, #00cc66 30px);
+      animation: twinkle 0.5s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .festive-content {
+      position: relative;
+      z-index: 2;
+    }
+    .festive-icon {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .festive-banner h3 {
+      font-size: 1.8em;
+      margin: 10px 0;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .event-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.9);
+      color: #c41e3a;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .festive-card-content {
+      padding: 30px;
+    }
+    .festive-tag {
+      background: linear-gradient(135deg, #c41e3a 0%, #ff6b6b 100%);
+      color: white;
+      font-weight: 700;
+    }
+    .festive-highlight {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-left: 5px solid #c41e3a;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(196, 30, 58, 0.1);
+    }
+    .festive-highlight p {
+      margin: 0;
+      color: #333;
+      line-height: 1.8;
+    }
+    .festive-highlight strong {
+      color: #c41e3a;
+    }
+
+    .time {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 0.95em;
+    }
+    .time i {
+      color: #c41e3a;
+    }
+
+    .lessons-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .lesson-item {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #165b33;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lesson-number {
+      font-weight: 700;
+      color: #165b33;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .lesson-text {
+      color: #333;
+      font-size: 0.95em;
+    }
+
+    .closing-festive {
+      margin-top: 30px;
+    }
+
     /* Comments Title Styling */
     .comments-title-header {
       color: #002855;
@@ -464,8 +664,145 @@
 
   <!-- News Section -->
   <section class="news-section fade-up">
+    <!-- Upcoming Event: 9 Lessons and Carols -->
+    <div class="news-card festive-event">
+      <div class="festive-banner">
+        <div class="christmas-lights"></div>
+        <div class="festive-content">
+          <div class="festive-icon">🎄</div>
+          <h3>Nine Lessons and Carols - Christmas Celebration</h3>
+          <div class="event-badge">🎵 Upcoming Event 🎵</div>
+        </div>
+      </div>
+      <div class="news-content festive-card-content">
+        <div class="news-tag festive-tag">Christmas Special</div>
+        <h3>Join Us for Nine Lessons and Carols</h3>
+        <div class="news-meta">
+          <span class="date"><i class="fas fa-calendar-alt"></i> Saturday, December 6, 2025</span>
+          <span class="time"><i class="fas fa-clock"></i> Time: TBD</span>
+        </div>
+        
+        <div class="festive-highlight">
+          <p>
+            <strong>🎶 Experience the Wonder of Christmas</strong><br>
+            Join St. Felix Seminary School for a beautiful celebration of the Christmas season through the timeless tradition of Nine Lessons and Carols—a service that combines Scripture readings with beloved Christmas hymns and music.
+          </p>
+        </div>
+
+        <p class="news-excerpt">
+          This sacred and melodious service has been a cherished tradition for centuries, celebrating the birth of Christ through powerful lessons from Scripture and soul-stirring carols that echo with hope, joy, and peace. Our seminarians and choir will lead this meaningful observance, inviting all to reflect on the deeper meaning of the season.
+        </p>
+
+        <div class="news-full" id="full-content-upcoming">
+          <div class="event-section">
+            <h5>✨ What to Expect</h5>
+            <ul>
+              <li><strong>Nine Powerful Lessons:</strong> Readings from the Old Testament and New Testament, narrating the journey to Christ's birth</li>
+              <li><strong>Traditional & Contemporary Carols:</strong> A blend of timeless classics and modern Christmas music performed by our seminary choir</li>
+              <li><strong>Candlelit Atmosphere:</strong> An intimate, reverent setting illuminated by candles, creating a sacred ambiance</li>
+              <li><strong>Community Participation:</strong> Congregation members will join in singing beloved carols</li>
+              <li><strong>A Time of Reflection:</strong> Perfect for those seeking peace and spiritual renewal during the busy holiday season</li>
+            </ul>
+          </div>
+
+          <div class="event-section">
+            <h5>🎼 The Program</h5>
+            <p>The service follows the traditional Nine Lessons and Carols format:</p>
+            <div class="lessons-list">
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 1:</span>
+                <span class="lesson-text">Creation (Genesis 1:1-5, 26-31)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 2:</span>
+                <span class="lesson-text">The Promise of Redemption (Isaiah 9:2, 6-7)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 3:</span>
+                <span class="lesson-text">Preparation for Christ (Jeremiah 23:5-6)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 4:</span>
+                <span class="lesson-text">The Annunciation (Luke 1:26-38)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 5:</span>
+                <span class="lesson-text">The Birth Foretold (Micah 5:2-4)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 6:</span>
+                <span class="lesson-text">Mary and the Shepherds (Luke 2:8-16)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 7:</span>
+                <span class="lesson-text">The Wise Men (Matthew 2:1-11)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 8:</span>
+                <span class="lesson-text">The Word Made Flesh (John 1:1-14)</span>
+              </div>
+              <div class="lesson-item">
+                <span class="lesson-number">Lesson 9:</span>
+                <span class="lesson-text">Glory and Praise (Luke 2:29-32)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-section">
+            <h5>🎁 Special Features</h5>
+            <ul>
+              <li><strong>Stunning Choir Performance:</strong> Our seminarians' voices will lift in harmonious praise</li>
+              <li><strong>Instrumental Music:</strong> Beautiful organ and instrumental accompaniment</li>
+              <li><strong>Festive Refreshments:</strong> Light refreshments will be served afterward (details TBD)</li>
+              <li><strong>Family-Friendly:</strong> Perfect for families, friends, alumni, and the broader community</li>
+            </ul>
+          </div>
+
+          <div class="event-highlight">
+            <h6>📍 Venue & Logistics</h6>
+            <p><strong>Location:</strong> St. Felix Seminary School Chapel, Ejeme Aniogor</p>
+            <p><strong>Date:</strong> Saturday, December 6, 2025</p>
+            <p><strong>Admission:</strong> Free and open to all</p>
+            <p><strong>More Details Coming Soon:</strong> Time and additional information will be announced shortly</p>
+          </div>
+
+          <div class="event-section">
+            <p class="closing-text closing-festive">
+              <em>"And the Word became flesh and dwelt among us, and we have seen his glory, glory as of the only Son from the Father, full of grace and truth." — John 1:14</em>
+            </p>
+          </div>
+        </div>
+
+        <button class="read-more-btn" onclick="toggleNewsContent('upcoming')">Read Full Details</button>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h4 class="comments-title"><i class="fas fa-comments"></i> Comments (0)</h4>
+
+          <div class="comment-form">
+            <h4 class="comments-title-header">Interested? Share Your Thoughts</h4>
+            <form onsubmit="submitComment(event, 'upcoming')">
+              <div class="form-group">
+                <label for="name-upcoming">Name</label>
+                <input type="text" id="name-upcoming" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="email-upcoming">Email</label>
+                <input type="email" id="email-upcoming" placeholder="Your Email" required>
+              </div>
+              <div class="form-group">
+                <label for="comment-upcoming">Comment</label>
+                <textarea id="comment-upcoming" placeholder="Share your thoughts or questions..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Post Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="news-card">
-      <img src="images/sports.jpg" alt="Inter-House Sports Competition" onerror="this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80'">
+      <img src="images/sports.jpg" alt="Inter-House Sports Competition" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80'">
       <div class="news-content">
         <div class="news-tag">Featured Event</div>
         <h3>ST. FELIX SEMINARY INTER-HOUSE SPORTS: A Day of Speed, Sweat & Unforgettable Victories</h3>
